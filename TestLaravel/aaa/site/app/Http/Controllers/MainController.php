@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\ContactDB;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Symfony\Component\VarDumper\VarDumper;
 
 
 class MainController extends Controller
@@ -18,13 +17,8 @@ class MainController extends Controller
 
     public function about()
     {
-        $reviews = new ContactDB();
-        $countReview = $reviews->all();
-        $count = 0;
-        foreach ($countReview as $c) {
-            $count++;
-        }
-        return view('about_product', ['count' => $count]);
+
+        return view('about_product');
     }
 
     public function product()
@@ -34,60 +28,33 @@ class MainController extends Controller
     }
 
 
-//    public function review_check(Request $request)
-//    {
-//        $valid = $request->validate([
-//            'name' => 'required|min:2|max:20',
-//            'email' => 'required|min:10|max:50',
-//            'subject' => 'max:100|min:1',
-//            'message' => 'required|min:15|max:500'
-//        ]);
-//
-//        $review = new ContactDB();
-//        $review->name = $request->input('name');
-//        $review->email = $request->input('email');
-//        $review->subject = $request->input('subject');
-//        $review->message = $request->input('message');
-//        $review->created_at = date("Y-m-d H:i");
-//
-//        $review->save();
-//
-//        return redirect()->route('review');
-//    }
-
-
-    public function cmp($a, $b)
-    {
-        if ($a["date"] == $b["date"]) {
-            return 0;
-        }
-        return (strtotime($a["date"]) < strtotime($b["date"])) ? -1 : 1;
-    }
-
-
     public function access_user(Request $request)
     {
         $valid = $request->validate([
             'inputUsernameEmail' => 'required|email|min:5|max:50',
             'inputPassword' => 'required|min:4|max:20'
         ]);
+
         $login = $request->input('inputUsernameEmail');
         $password = $request->input('inputPassword');
+        $testLog = 'mail.sh';
+       // if (preg_match("/^[а-яА-Яa-zA-Z0-9_\.\-]+@[а-яА-Яa-zA-Z0-9\-]+\.[а-яА-Яa-zA-Z\-\.]+$/Du", $login) > 0) {
+        $keywords = preg_split("/[\s@]+/", $login);
+        if(!in_array($keywords, (array)$testLog)){
+            $users = User::all();
+            $products = ContactDB::all();
 
-        $users = User::all();
-
-
-        foreach ($users as $u) {
-            $a = strcmp($u->email, $login);
-            $b = strcmp($u->password, $password);
-            if ($a == 0 && $b == 0) {
-                $products = new ContactDB();
-                return view('product', ['products' => $products->all()]);
+            foreach ($users as $u) {
+                $a = strcmp($u->email, $login);
+                $b = strcmp($u->password, $password);
+                if ($a == 0 && $b == 0) {
+                    return view('product', ['products' => $products->all()]);
+                } else {
+                    return view('home');
+                }
             }
+        }else{
+            return view('home');
         }
-
-           // return redirect()->route('home');
-
     }
-
 }

@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', 'App\Http\Controllers\MainController@home');
 Route::get('/home', 'App\Http\Controllers\MainController@home');
-Route::get('/home', 'App\Http\Controllers\MainController@review')->name('home');
 
 Route::get('/about_product', 'App\Http\Controllers\MainController@about');
 
 Route::get('/product', 'App\Http\Controllers\MainController@review')->name('product');
 Route::post('/product/check', 'App\Http\Controllers\MainController@access_user');
+
 Route::get('/user/{id}/{name}', function ($id, $name) {
     return 'ID: ' . $id . ' . NAME .' . $name;
 });

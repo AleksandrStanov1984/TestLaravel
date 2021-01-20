@@ -32,33 +32,6 @@
     </form>
 </div>
 
-
-{{--<script>--}}
-
-{{--    $('#enter').on('click', function () {--}}
-{{--        var archiveId = $(this).data('id');--}}
-{{--        $.ajax({--}}
-{{--            url: '/main/saveCustomerToArchive/id/' + archiveId,--}}
-{{--            type: 'POST',--}}
-{{--            dataType: 'json',--}}
-{{--            success: function (data) {--}}
-{{--                if (data.status === 'OK') {--}}
-{{--                    $.unblockUI();--}}
-{{--                    sendNotify('Заказчик перемещен в архив', 'success');--}}
-
-{{--                    $('#in_archive<?= $customer->id ?>').remove();--}}
-{{--                } else {--}}
-{{--                    $.unblockUI();--}}
-{{--                    sendNotify(data.error, 'error');--}}
-{{--                }--}}
-{{--            }--}}
-{{--        });--}}
-{{--        $.fancybox.close();--}}
-{{--    });--}}
-
-{{--</script>--}}
-
-
 @endsection
 
 @section('footer_content')

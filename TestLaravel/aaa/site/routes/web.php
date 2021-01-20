@@ -12,7 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'App\Http\Controllers\MainController@home');
+Route::get('/home', 'App\Http\Controllers\MainController@home');
+Route::get('/about', 'App\Http\Controllers\MainController@about_product');
 
+Route::get('/review', 'App\Http\Controllers\MainController@review')->name('review');
+Route::post('/review/check', 'App\Http\Controllers\MainController@review_check');
 Route::get('/user/{id}/{name}', function ($id, $name) {
     return 'ID: ' . $id . ' . NAME .' . $name;
 });

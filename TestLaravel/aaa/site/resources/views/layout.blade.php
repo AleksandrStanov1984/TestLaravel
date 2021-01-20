@@ -25,6 +25,15 @@
 
 <body>
 
+<div style="font-family:Verdana, Arial, 'Harlow Solid Italic', sans-serif; font-size: 15px; background-color: #399191"
+     class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 text-white border-bottom shadow-sm">
+    <h5 data-toggle="tooltip" data-placement="top" style="margin-right: 300px"
+            title="ЛОГОТИП"></h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <span class="p-2 text-white" href="home" data-toggle="tooltip" data-placement="top" title="ЛОГОТИП">ЛОГОТИП</span>
+        <a class="p-2 text-white" href="home" data-toggle="tooltip" data-placement="top" title="Воити в аккаутн">Воити в аккаутн</a>
+    </nav>
+</div>
 
 
 <div class="container">
@@ -39,8 +48,14 @@
     @yield('footer_content')
 </div>
 
-<footer style="margin-top: 50px">
-
+<footer>
+    <div style="background-color: #399191; position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40px;"
+         class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 text-white border-bottom shadow-sm">
+    </div>
 </footer>
 
 
